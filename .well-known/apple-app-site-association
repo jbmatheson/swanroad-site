@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["92X68R4452.com.jbmatheson.swanroad"],
+        "components": [
+          { "/": "/p/*", "comment": "A puzzle by number: /p/23" },
+          { "/": "/daily", "comment": "Today's puzzle" }
+        ]
+      }
+    ]
+  }
+}
