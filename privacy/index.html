@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Swan’s Road privacy policy</title>
-<meta name="description" content="Swan’s Road does not collect your data. What the app remembers, it keeps on your device.">
+<meta name="description" content="What Swan’s Road keeps on your device, the anonymous usage counts it sends from version 1.3, and how to turn them off.">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
 <link rel="apple-touch-icon" href="../assets/icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,10 +34,10 @@
 <header class="top"><div class="wrap"><a class="brand" href="../"><img src="../assets/icon-64.png" alt="" width="32" height="32">Swan’s Road</a><nav><a href="../#how">How it plays</a><a href="../support/">Support</a><a href="../privacy/">Privacy</a></nav></div></header>
 <main>
   <h1>Swan’s Road privacy policy</h1>
-  <p class="muted">Effective 31 October 2026</p>
+  <p class="muted">Effective 4 November 2026</p>
 
   <h2>The short version</h2>
-  <p>Swan’s Road does not collect your data. It has no account system, no analytics, no advertising and no server of its own. What the app remembers, it keeps on your device.</p>
+  <p>Swan’s Road has no account system, no advertising and no third-party analytics. From version 1.3 it sends a few anonymous usage counts to a server run by its maker, listed below, and a switch in Settings turns that off. Versions before 1.3 send nothing. Everything else the app remembers, it keeps on your device.</p>
 
   <h2>What stays on your device</h2>
   <ul>
@@ -46,6 +46,20 @@
   </ul>
   <p>Deleting the app deletes all of it. Settings has a button to reset puzzle progress on its own.</p>
 
+  <h2>Anonymous usage counts</h2>
+  <p>From version 1.3, the app counts a few things so its maker can see which parts of the game get played. Each count is sent as an event:</p>
+  <ul>
+    <li>The app opening.</li>
+    <li>A game finishing: the kind of game, the computer’s level, the board and layout, which colour you played, the result and how it came about, the number of turns, the time played, and the rules version.</li>
+    <li>A campaign level cleared, by its number.</li>
+    <li>A puzzle solved, by its number and the hints used.</li>
+    <li>The tutorial finished.</li>
+    <li>A purchase, by the product’s name.</li>
+  </ul>
+  <p>Each event carries the time it happened, the app version, whether it came from an iPhone or an iPad, the iOS version, and a random key the app makes up the first time it runs. The key is not derived from your device, your Apple ID or anything else about you; it only tells a returning install from a new one, and deleting the app discards it. Nothing in the events names you: no name, email, Apple ID, Game Center identity, device identifier or location. Your device’s internet address reaches the server, as with any connection, but it is not kept with the counts.</p>
+  <p>The events go to a small service run by the maker of Swan’s Road, hosted on Vercel with a database on Neon, in the United States. They are deleted after 90 days. They are used only to understand how the game is played, and are never sold, shared or used for advertising.</p>
+  <p>To turn this off, open Settings in the app and switch off “Share anonymous usage”. From then on nothing is counted or sent, and anything waiting to be sent is discarded.</p>
+
   <h2>Online play, leaderboards and achievements</h2>
   <p>Online matches, the daily game’s leaderboard, and achievements use Apple’s Game Center. When you use them, Apple stores the moves of a match, your scores and your achievement progress on its servers, and shows other players your Game Center display name. Apple’s handling of that data is covered by <a href="https://www.apple.com/legal/privacy/">Apple’s privacy policy</a>, not by Swan’s Road. You can play without ever signing in to Game Center; only online play, leaderboards and achievements need it.</p>
 
@@ -53,13 +67,13 @@
   <p>Play nearby connects two devices in the same room directly, over Wi‑Fi or Bluetooth. Each device sees the other’s device name while the game lasts. Nothing passes through any server.</p>
 
   <h2>Purchases</h2>
-  <p>Swan’s Road Complete and the single looks are one-time purchases made through the App Store. Apple processes the payment and records what you own; the app only asks Apple whether a purchase exists. No payment details ever reach Swan’s Road.</p>
+  <p>Swan’s Road Complete and the single looks are one-time purchases made through the App Store. Apple processes the payment and records what you own; the app only asks Apple whether a purchase exists. No payment details ever reach Swan’s Road. A purchase is counted among the usage counts above, by the product’s name only.</p>
 
   <h2>Children</h2>
-  <p>Swan’s Road is rated 4+. It collects nothing from anyone, children included.</p>
+  <p>Swan’s Road is rated 4+. The anonymous usage counts above are the only thing it collects, from anyone, and they identify nobody. There are no accounts, no advertising and no tracking.</p>
 
   <h2>Changes</h2>
-  <p>If this policy changes, the new version appears here with a new date. The app itself will not start collecting data without an update that says so.</p>
+  <p>If this policy changes, the new version appears here with a new date. The app will not start collecting anything new without an update that says so.</p>
 
   <h2>Contact</h2>
   <p>Questions about privacy: <a href="mailto:jim@mouseandchisel.com">jim@mouseandchisel.com</a>.</p>
