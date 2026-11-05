@@ -98,6 +98,7 @@
   footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between; }
   footer a { color: var(--muted); text-decoration: none; margin-right: 18px; }
   footer a:hover { color: var(--ink); }
+  footer .wrap > :last-child { flex-basis: 100%; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
@@ -207,7 +208,8 @@
 
 <footer>
   <div class="wrap">
-    <div><a href="https://mouseandchisel.com">Made by Mouse <div><a href="support/">Support</a>amp; Chisel</a><a href="support/">Support</a><a href="privacy/">Privacy policy</a><a href="press/">Press</a><a href="mailto:jim@mouseandchisel.com">jim@mouseandchisel.com</a></div>
+    <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel</a></div>
+    <div><a href="support/">Support</a><a href="privacy/">Privacy policy</a><a href="press/">Press</a><a href="mailto:jim@mouseandchisel.com">jim@mouseandchisel.com</a></div>
     <div>© 2026 Jim Matheson. The name is the Old English kenning for the sea, from Beowulf.</div>
   </div>
 </footer>

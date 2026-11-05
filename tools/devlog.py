@@ -76,6 +76,7 @@ HEAD = """<!doctype html>
 """
 FOOT = """</main>
 <footer>
+  <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel</a></div>
   <div><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
 </footer>
 </body>
