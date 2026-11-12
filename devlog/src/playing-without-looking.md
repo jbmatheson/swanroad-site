@@ -3,7 +3,7 @@ date: 2026-12-01
 description: What VoiceOver says about a square, and the other settings the game listens to.
 published: false
 
-A board game on a phone is mostly a picture, and a picture is the hardest thing to make work for someone who cannot see it. Swan’s Road was built to be played with VoiceOver from the first version, and this post is about what that took.
+A board game on a phone is mostly a picture, and a picture is the hardest thing to make work for someone who cannot see it. Swan Road was built to be played with VoiceOver from the first version, and this post is about what that took.
 
 ## What a square says
 

@@ -3,7 +3,7 @@ date: 2026-11-10
 description: The one rule the whole game hangs on, and the four small rules that keep it from stalling.
 published: false
 
-Most board games move pieces. In Swan’s Road you never move a pearl. You place an anchor, and the pearls move themselves.
+Most board games move pieces. In Swan Road you never move a pearl. You place an anchor, and the pearls move themselves.
 
 ## The pull
 

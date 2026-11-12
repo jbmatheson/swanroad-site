@@ -22,11 +22,11 @@ HEAD = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title} · Swan’s Road</title>
+<title>{title} · Swan Road</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="https://swanroad.app/{path}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="{title} · Swan’s Road">
+<meta property="og:title" content="{title} · Swan Road">
 <meta property="og:description" content="{description}">
 <meta property="og:image" content="https://swanroad.app/assets/social.jpg">
 <meta property="og:url" content="https://swanroad.app/{path}">
@@ -71,7 +71,7 @@ HEAD = """<!doctype html>
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan’s Road</a><nav><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
 <main>
 """
 FOOT = """</main>
@@ -111,7 +111,7 @@ def main(drafts=False):
         page += f"<p class=\"muted\">{nice(m['date'])}{'' if m['published'] else ' · draft'}</p>\n<h1>{m['title']}</h1>\n{html}\n"
         page += "<p class=\"muted\"><a href=\"/devlog/\">All posts</a></p>\n" + FOOT
         (OUT / m["slug"]).mkdir(parents=True); (OUT / m["slug"] / "index.html").write_text(page, encoding="utf-8")
-    index = HEAD.format(title="Devlog", description="Notes from making Swan’s Road: the rules, the computer opponent, the name, the details.", path="devlog/")
+    index = HEAD.format(title="Devlog", description="Notes from making Swan Road: the rules, the computer opponent, the name, the details.", path="devlog/")
     index += "<h1>Devlog</h1>\n<p class=\"muted\">Notes from making the game, one a week from launch.</p>\n"
     for m, _ in posts:
         index += (f"<div class=\"post\"><h2><a href=\"/devlog/{m['slug']}/\">{m['title']}</a></h2>"

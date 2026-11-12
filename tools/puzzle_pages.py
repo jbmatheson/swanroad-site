@@ -12,11 +12,11 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title} · Swan’s Road</title>
+<title>{title} · Swan Road</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="https://swanroad.app/{path}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{title} · Swan’s Road">
+<meta property="og:title" content="{title} · Swan Road">
 <meta property="og:description" content="{description}">
 <meta property="og:image" content="https://swanroad.app/assets/shot-puzzle.jpg">
 <meta property="og:url" content="https://swanroad.app/{path}">
@@ -49,7 +49,7 @@ PAGE = """<!doctype html>
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan’s Road</a><nav><a href="/#how">How it plays</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a href="/#how">How it plays</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav></div></header>
 <main>
   <h1>{title}</h1>
   <p class="muted">{subtitle}</p>
@@ -85,13 +85,13 @@ for p in puzzles:
     write(f"p/{p['id']}",
           title=f"Puzzle {p['id']}",
           subtitle=f"Collect in {p['n']} · {seat} to move",
-          description=f"Swan’s Road puzzle {p['id']}: force a pearl onto {seat}’s shore within {moves}, whatever {other} does.",
+          description=f"Swan Road puzzle {p['id']}: force a pearl onto {seat}’s shore within {moves}, whatever {other} does.",
           board=board(p["cells"]),
           brief=f"{seat} to move. Force a pearl onto {seat}’s shore within {moves}, whatever {other} does. Anchors pull, pearls drift one square a turn toward the strongest pull, and a pearl that reaches a shore is collected.")
 write("daily",
       title="Today’s puzzle",
       subtitle="A new one every day, the same for everyone",
-      description="Swan’s Road sets one puzzle a day: force a pearl onto your shore in a few moves, whatever the other side does.",
+      description="Swan Road sets one puzzle a day: force a pearl onto your shore in a few moves, whatever the other side does.",
       board="",
-      brief="Swan’s Road sets one puzzle a day, the same for everyone: force a pearl onto your shore in one to four moves, whatever the other side does. Solve it daily to keep a streak.")
+      brief="Swan Road sets one puzzle a day, the same for everyone: force a pearl onto your shore in one to four moves, whatever the other side does. Solve it daily to keep a streak.")
 print(f"wrote {len(puzzles)} puzzle pages and daily/")
