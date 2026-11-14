@@ -1,0 +1,17 @@
+#!/bin/sh
+# The game is Swan Road. Blocks any tracked text that adds an apostrophe or an s to the name.
+#   name-check staged          what is staged now (pre-commit)
+#   name-check tree "<shas>"   the whole tree at each pushed tip (pre-push)
+cd "$(git rev-parse --show-toplevel)"
+pattern="swan('|’)?s[ -]?road"
+case "$1" in
+  staged) hits=$(git grep -I -i -n -E --cached "$pattern" -- . || true) ;;
+  tree) hits=$(for sha in $2; do git grep -I -i -n -E "$pattern" "$sha" -- . || true; done) ;;
+  *) echo "usage: name-check staged | tree \"<shas>\""; exit 2 ;;
+esac
+if [ -n "$hits" ]; then
+  echo "name: the game is Swan Road. These lines use an old form of the name:"
+  echo "$hits" | head -20 | sed 's/^/    /'
+  exit 1
+fi
+echo "name: ok"
