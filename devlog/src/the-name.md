@@ -5,7 +5,7 @@ published: false
 
 Old English poets did not always call the sea the sea. They had a habit of naming a thing by what it was to something else: the sea was the *whale-road*, or the *swan-road*. The figure is called a kenning. In *Beowulf*, the hero sails to Denmark “ofer swanrāde”, over the swan-road.
 
-The name is that kenning. The game is a stretch of water between two shores, with pearls on it that drift toward whoever pulls hardest. A road is a path things travel along. A swan’s road is the sea seen as that path.
+The name is that kenning. The game is a stretch of water between two shores, with pearls on it that drift toward whoever pulls hardest. A road is a path things travel along. The swan-road is the sea seen as that path.
 
 ## What the pieces are
 
