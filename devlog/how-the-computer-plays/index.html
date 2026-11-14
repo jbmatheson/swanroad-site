@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the computer plays · Swan Road</title>
+<meta name="description" content="Four levels, one search, and why Medium looks as deep as Hard but settles for less.">
+<link rel="canonical" href="https://swanroad.app/devlog/how-the-computer-plays/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How the computer plays · Swan Road">
+<meta property="og:description" content="Four levels, one search, and why Medium looks as deep as Hard but settles for less.">
+<meta property="og:image" content="https://swanroad.app/assets/social.jpg">
+<meta property="og:url" content="https://swanroad.app/devlog/how-the-computer-plays/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1a2b">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0b1a2b; --ink: #eef3f8; --muted: #a7b6c6; --accent: #7fd4ea; --sand: #e4d6b2; --card: #132b49; --line: rgba(255,255,255,.08);
+          --serif: "Fraunces", "Iowan Old Style", "Palatino", Georgia, serif; --sans: -apple-system, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 18px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  header.top { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: rgba(11,26,43,.72); border-bottom: 1px solid var(--line); }
+  header.top .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-family: var(--serif); font-size: 20px; font-weight: 600; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }
+  nav a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav a:not(:last-child) { display: none; } }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 16px 72px; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 5vw, 44px); line-height: 1.1; margin: 0 0 6px; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 26px; margin: 40px 0 10px; color: var(--sand); }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 20px; margin: 26px 0 6px; }
+  p, li { margin: 0 0 14px; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  ul, ol { padding-left: 22px; }
+  blockquote { margin: 0 0 14px; padding: 14px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  blockquote p:last-child { margin: 0; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 16px; background: var(--card); padding: 1px 6px; border-radius: 6px; }
+  .post { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .post h2 { margin: 0 0 4px; font-size: 24px; }
+  .post h2 a { color: var(--ink); text-decoration: none; }
+  .post h2 a:hover { color: var(--accent); }
+  .post .muted { font-size: 15px; }
+  footer { border-top: 1px solid var(--line); padding: 28px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
+  footer a { color: var(--muted); margin: 0 8px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
+<main>
+<p class="muted">14 November 2026</p>
+<h1>How the computer plays</h1>
+<p>The computer opponent in Swan Road is a plain alpha-beta search: look ahead a fixed number of turns, score the positions at the end, and pick the move that leads to the best one if the other side also plays well. No neural network. The interesting choices were how deep to look and what to do with the answer.</p>
+<h2>Three copies of the rules</h2>
+<p>The rules exist three times. A Python version was the first, written to try variants quickly. A Rust version came next, fast enough to play a hundred games against itself in a minute, and it is the one the balance work ran on. The Swift version is the one in the app.</p>
+<p>Three versions can disagree, and a disagreement would mean the app plays a different game from the one the balance work tested. So two checks run whenever the rules change: every Python game is replayed in Rust step by step, and the Swift search is compared with the Rust search on random positions until the values match exactly. Both must stay at zero mismatches.</p>
+<h2>How deep</h2>
+<p>Depth is the lever. On an iPhone 16 Plus, looking six turns ahead on the 7×7 board takes between a quarter of a second and six tenths of a second per move. One turn deeper takes three to fifteen seconds. So Expert looks six ahead and stops there, and five ahead on the bigger 9×9 board, where each turn has more moves.</p>
+<ul>
+<li><strong>Easy</strong> looks two ahead.</li>
+<li><strong>Medium</strong> and <strong>Hard</strong> look four ahead.</li>
+<li><strong>Expert</strong> looks six ahead.</li>
+</ul>
+<h2>Why Medium is not just a shallower Hard</h2>
+<p>The first Medium looked two turns ahead and picked its best move. It was no stronger than Easy. Looking three ahead was closer to Hard than to Easy. There was no depth between them that felt like a middle.</p>
+<p>What worked was depth with a loose hand. Medium looks as far ahead as Hard, then picks at random from its three best moves, as long as they are within a band of the best. The band is sixty points, which is about six rows of pearl drift and well short of a whole pearl. It makes Medium a player who sees what Hard sees and sometimes takes the second-best road. Easy does the same with its six best moves. Hard and Expert always take the best.</p>
+<h2>The daily game</h2>
+<p>The daily game is the same board for everyone, with one try. For that to be fair, the computer has to make the same reply on every phone, and a time limit would not do it: a new phone searches more in a second than an old one. So the daily opponent stops at a fixed number of positions examined instead of a fixed time. On an iPhone 12, the longest reply stays under about eight seconds.</p>
+<h2>How strong</h2>
+<p>The campaign climbs from a gentle first opponent to Expert, and the climb was measured, not guessed: each level played hundreds of games against the others, and the rating anchors in the app come from the gaps those games showed. A strong player beats Expert about one time in twenty. For a while the daily game cycled Expert in every third day, and those days ended most streaks, so the daily now alternates Medium and Hard. Expert is still there under Play, for the days you want to lose with dignity.</p>
+<p class="muted"><a href="/devlog/">All posts</a></p>
+</main>
+<footer>
+  <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel Games</a></div>
+  <div><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
+</footer>
+</body>
+</html>

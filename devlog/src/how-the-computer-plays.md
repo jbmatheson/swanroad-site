@@ -1,7 +1,7 @@
 title: How the computer plays
-date: 2026-11-17
+date: 2026-11-14
 description: Four levels, one search, and why Medium looks as deep as Hard but settles for less.
-published: false
+published: true
 
 The computer opponent in Swan Road is a plain alpha-beta search: look ahead a fixed number of turns, score the positions at the end, and pick the move that leads to the best one if the other side also plays well. No neural network. The interesting choices were how deep to look and what to do with the answer.
 
