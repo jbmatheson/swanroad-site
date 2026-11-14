@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playing without looking · Swan Road</title>
+<meta name="description" content="What VoiceOver says about a square, and the other settings the game listens to.">
+<link rel="canonical" href="https://swanroad.app/devlog/playing-without-looking/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Playing without looking · Swan Road">
+<meta property="og:description" content="What VoiceOver says about a square, and the other settings the game listens to.">
+<meta property="og:image" content="https://swanroad.app/assets/social.jpg">
+<meta property="og:url" content="https://swanroad.app/devlog/playing-without-looking/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1a2b">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0b1a2b; --ink: #eef3f8; --muted: #a7b6c6; --accent: #7fd4ea; --sand: #e4d6b2; --card: #132b49; --line: rgba(255,255,255,.08);
+          --serif: "Fraunces", "Iowan Old Style", "Palatino", Georgia, serif; --sans: -apple-system, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 18px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  header.top { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: rgba(11,26,43,.72); border-bottom: 1px solid var(--line); }
+  header.top .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-family: var(--serif); font-size: 20px; font-weight: 600; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }
+  nav a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav a:not(:last-child) { display: none; } }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 16px 72px; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 5vw, 44px); line-height: 1.1; margin: 0 0 6px; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 26px; margin: 40px 0 10px; color: var(--sand); }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 20px; margin: 26px 0 6px; }
+  p, li { margin: 0 0 14px; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  ul, ol { padding-left: 22px; }
+  blockquote { margin: 0 0 14px; padding: 14px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  blockquote p:last-child { margin: 0; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 16px; background: var(--card); padding: 1px 6px; border-radius: 6px; }
+  .post { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .post h2 { margin: 0 0 4px; font-size: 24px; }
+  .post h2 a { color: var(--ink); text-decoration: none; }
+  .post h2 a:hover { color: var(--accent); }
+  .post .muted { font-size: 15px; }
+  footer { border-top: 1px solid var(--line); padding: 28px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
+  footer a { color: var(--muted); margin: 0 8px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
+<main>
+<p class="muted">14 November 2026</p>
+<h1>Playing without looking</h1>
+<p>A board game on a phone is mostly a picture, and a picture is the hardest thing to make work for someone who cannot see it. Swan Road was built to be played with VoiceOver from the first version, and this post is about what that took.</p>
+<h2>What a square says</h2>
+<p>Every square on the board is its own element. Touch one and VoiceOver reads a sentence built from what is there:</p>
+<blockquote>
+<p>Row 3, column 4, pearl, drifting up, Light’s shore, pulled 3 up, 1 left.</p>
+</blockquote>
+<p>The parts come in a fixed order so a regular player learns to listen for the one they need. The position first. Then what is on the square: a pearl, a Light anchor, a Dark anchor, or empty. For a pearl, what it will do when the turn ends: <em>drifting up</em>, or <em>held</em> when the pulls cancel or another pearl blocks the way. If a shore runs through that row, whose shore it is. Last, the pulls on the pearl, by strength and direction.</p>
+<p>While you have a move pending but not yet confirmed, the pearls that would change say so: <em>this move drifts it left</em>. That is the spoken version of the arrows sighted players see before they confirm.</p>
+<p>The tide bar has a spoken label too: <em>Tide</em>, or <em>Tide up: shores 3 deep</em> once it has risen.</p>
+<h2>Type</h2>
+<p>The text scales with the Dynamic Type setting, including the board’s captions and the rules, up into the accessibility sizes. It stops growing at the size where the board would no longer fit on the screen, so the board keeps its squares. The splash screen caps its own type at the largest standard size, since it is decorative and a tap skips it.</p>
+<h2>Motion</h2>
+<p>With Reduce Motion on, the pulsing highlight on a suggested square becomes a steady one, the puzzle animations hold still, and the opening screen shortens its fades and skips the small drop of the pearl. Nothing you need is conveyed by motion alone; the arrows and the spoken labels carry the same information.</p>
+<h2>Contrast and colour</h2>
+<p>With Increase Contrast on, secondary text brightens; in the Night look, from sixty percent of the ink colour to eighty-five. In every look, the colours were chosen so that secondary text clears a 4.5 to 1 contrast against its background.</p>
+<p>Colour never carries meaning on its own. The two shores are told apart by position, by the names in the spoken labels, and in the Nautical chart look by hatching: Light’s shore is hatched one way and Dark’s is cross-hatched.</p>
+<h2>What it cost</h2>
+<p>Less than you would think, because most of it is the same work as making the game explain itself to anyone. The spoken label for a square is the drift preview in words. The tide bar’s label is the tide bar in words. Once the game can say what it is doing, saying it to VoiceOver is one more line.</p>
+<p class="muted"><a href="/devlog/">All posts</a></p>
+</main>
+<footer>
+  <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel Games</a></div>
+  <div><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
+</footer>
+</body>
+</html>
