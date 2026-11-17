@@ -94,7 +94,17 @@ check(P.isIOS({ userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS 
   && !P.isIOS({ userAgent: "Mozilla/5.0 (Macintosh)", platform: "MacIntel", maxTouchPoints: 0 }) && !P.isIOS({ userAgent: "Mozilla/5.0 (Linux; Android 15)" }), "iPhone and iPad detection");
 console.log(`limit: ${cap} days in the browser on an iPhone or iPad`);
 
-// 7. The board the page shares is the board the numbered pages show.
+// 7. A link that says where it was posted: the App Store link takes that name, and nothing else gets in.
+const camp = "https://apps.apple.com/app/apple-store/id6821428315?pt=123456&ct=webdaily&mt=8";
+check(P.withSource(camp, "?from=hn") === camp.replace("ct=webdaily", "ct=hn"), "?from=hn does not name the campaign");
+check(P.withSource(camp, "?x=1&from=r-blind&y=2") === camp.replace("ct=webdaily", "ct=r-blind"), "from among other parameters is not read");
+for (const search of ["", "?from=", "?from=HN", "?from=a b", "?from=a%26pt%3D1", "?from=" + "a".repeat(31), "?notfrom=hn", "?from=hn%0A"]) {
+  check(P.withSource(camp, search) === camp, `"${search}" changed the App Store link`);
+}
+check(P.withSource("https://apps.apple.com/app/id6821428315", "?from=hn") === "https://apps.apple.com/app/id6821428315", "a plain link gained a campaign");
+console.log("source: ?from= names the campaign and rejects everything else");
+
+// 8. The board the page shares is the board the numbered pages show.
 for (const p of book.puzzles.filter(p => P.tideDepth(p.turn) === 0)) {
   const shown = /<div class="board"[^>]*>([^<]*)<\/div>/.exec(readFileSync(join(root, "p", String(p.id), "index.html"), "utf8"));
   check(shown && shown[1] === P.grid(P.stateOf(p)), `puzzle ${p.id}: the shared board differs from p/${p.id}`);

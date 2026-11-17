@@ -16,12 +16,11 @@ from anywhere:
 import html as htmllib, json, pathlib, re, shutil, sys
 
 import markdown
-import footer
+import campaign, footer
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC, OUT = ROOT / "devlog" / "src", ROOT / "devlog"
 SITE = "https://swanroad.app/"
-STORE = "https://apps.apple.com/app/id6821428315"
 FEED = '<link rel="alternate" type="application/atom+xml" title="Swan Road devlog" href="/devlog/feed.xml">\n'
 
 HEAD = """<!doctype html>
@@ -39,7 +38,7 @@ HEAD = """<!doctype html>
 <meta property="og:url" content="https://swanroad.app/{path}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b1a2b">
-<meta name="apple-itunes-app" content="app-id=6821428315">
+<meta name="apple-itunes-app" content="{banner}">
 {extra}<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -159,16 +158,18 @@ def main(drafts=False):
     for m, body in posts:
         html = markdown.markdown(body, extensions=["smarty"])
         rendered.append((m, html))
-        page = HEAD.format(title=m["title"], description=m["description"], path=f"devlog/{m['slug']}/", extra=FEED + article(m), footer_css=footer.CSS)
+        page = HEAD.format(title=m["title"], description=m["description"], path=f"devlog/{m['slug']}/", extra=FEED + article(m), footer_css=footer.CSS,
+                           banner=campaign.banner(campaign.SITE))
         page += f"<p class=\"muted\">{dated(m)}</p>\n<h1>{m['title']}</h1>\n{html}\n"
-        page += PLAY.format(store=STORE)
+        page += PLAY.format(store=campaign.href(campaign.SITE))
         others = [o for o, _ in posts if o["slug"] != m["slug"]]
         if others:
             page += "<h2>More from the devlog</h2>\n<ul>\n" + "".join(
                 f"<li><a href=\"/devlog/{o['slug']}/\">{o['title']}</a>: {o['description']}</li>\n" for o in others) + "</ul>\n"
         page += "<p class=\"muted\"><a href=\"/devlog/\">All posts</a></p>\n" + FOOT
         (OUT / m["slug"]).mkdir(parents=True); (OUT / m["slug"] / "index.html").write_text(page, encoding="utf-8")
-    index = HEAD.format(title="Devlog", description="Notes from making Swan Road: the rules, the computer opponent, the name, the details.", path="devlog/", extra=FEED, footer_css=footer.CSS)
+    index = HEAD.format(title="Devlog", description="Notes from making Swan Road: the rules, the computer opponent, the name, the details.", path="devlog/", extra=FEED, footer_css=footer.CSS,
+                        banner=campaign.banner(campaign.SITE))
     index += "<h1>Devlog</h1>\n<p class=\"muted\">Notes from making the game, one a week from launch. <a href=\"/devlog/feed.xml\">Feed</a></p>\n"
     for m, _ in posts:
         index += (f"<div class=\"post\"><h2><a href=\"/devlog/{m['slug']}/\">{m['title']}</a></h2>"
