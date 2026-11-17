@@ -42,6 +42,8 @@ CHANNELS = [
     ("bluesky", "Bluesky"),
     ("linkedin", "LinkedIn"),
     ("friends", "Links sent to friends and testers"),
+    # Not a post: the app itself hands this one out, from 1.3.0 (Links.appStore in the app repository).
+    ("nearby", "The app's own \"Send them the app\" link, in Play nearby"),
 ]
 NAME = re.compile(r"[a-z0-9-]{1,30}")
 PLAIN = f"https://apps.apple.com/app/id{APP_ID}"
