@@ -1,7 +1,7 @@
 title: Why the pearls drift
-date: 2026-11-10
+date: 2026-11-17
 description: The one rule the whole game hangs on, and the four small rules that keep it from stalling.
-published: false
+published: true
 
 Most board games move pieces. In Swan Road you never move a pearl. You place an anchor, and the pearls move themselves.
 
@@ -33,5 +33,3 @@ There is one more: a tie in pearls goes to Dark, who moved second. Light’s fir
 ## What the rules do not say
 
 They do not say where to put your anchors. After a few games you start to see lanes: a column with a pearl in it and nothing between the pearl and your shore. You start to count pulls on your fingers before you place. Then you stop counting, because the arrows on the board show you where every pearl will drift before you confirm. That is the first thing I would tell a new player: look at the arrows, then place.
-
-The quickest way to see all of this is to do it: [today’s puzzle](/daily/) plays in a browser.
