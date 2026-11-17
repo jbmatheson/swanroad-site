@@ -74,6 +74,7 @@ HEAD = """<!doctype html>
   .post h2 a {{ color: var(--ink); text-decoration: none; }}
   .post h2 a:hover {{ color: var(--accent); }}
   .post .muted {{ font-size: 15px; }}
+  .post .more {{ margin: 8px 0 0; font-size: 16px; font-weight: 600; }}
   .play {{ margin: 44px 0 0; padding: 18px 20px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }}
   .play p:last-child {{ margin: 0; }}
   .btn {{ display: inline-block; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: #0b1a2b; font-weight: 600; text-decoration: none; }}
@@ -171,7 +172,9 @@ def main(drafts=False):
     index += "<h1>Devlog</h1>\n<p class=\"muted\">Notes from making the game, one a week from launch. <a href=\"/devlog/feed.xml\">Feed</a></p>\n"
     for m, _ in posts:
         index += (f"<div class=\"post\"><h2><a href=\"/devlog/{m['slug']}/\">{m['title']}</a></h2>"
-                  f"<p class=\"muted\">{dated(m)}</p><p>{m['description']}</p></div>\n")
+                  f"<p class=\"muted\">{dated(m)}</p><p>{m['description']}</p>"
+                  # The title is the link a screen reader and the Tab key meet; this one says the same thing to the eye.
+                  f"<p class=\"more\"><a href=\"/devlog/{m['slug']}/\" aria-hidden=\"true\" tabindex=\"-1\">Read the post →</a></p></div>\n")
     if not posts: index += "<p>The first post comes with the launch.</p>\n"
     (OUT / "index.html").write_text(index + FOOT, encoding="utf-8")
     published = [(m, h) for m, h in rendered if m["published"]]
