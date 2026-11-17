@@ -49,7 +49,8 @@ HEAD = """<!doctype html>
   .brand img {{ width: 32px; height: 32px; border-radius: 8px; }}
   nav a {{ color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }}
   nav a:hover {{ color: var(--ink); }}
-  @media (max-width: 640px) {{ nav a:not(:last-child) {{ display: none; }} }}
+  @media (max-width: 640px) {{ nav a:not(:last-child):not(.cta) {{ display: none; }} }}
+  @media (max-width: 380px) {{ nav a:not(.cta) {{ display: none; }} }}
   main {{ max-width: 720px; margin: 0 auto; padding: 48px 16px 72px; }}
   h1 {{ font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 5vw, 44px); line-height: 1.1; margin: 0 0 6px; }}
   h2 {{ font-family: var(--serif); font-weight: 600; font-size: 26px; margin: 40px 0 10px; color: var(--sand); }}
@@ -71,7 +72,7 @@ HEAD = """<!doctype html>
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a class="cta" href="/daily/">Daily puzzle</a><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
 <main>
 """
 FOOT = """</main>

@@ -28,7 +28,9 @@
   .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-family: var(--serif); font-size: 20px; font-weight: 600; }
   .brand img { width: 32px; height: 32px; border-radius: 8px; }
   nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }
-  nav a:hover { color: var(--ink); }
+  nav a:hover, nav a[aria-current] { color: var(--ink); }
+  @media (max-width: 640px) { nav a:not(:last-child):not(.cta) { display: none; } }
+  @media (max-width: 380px) { nav a:not(.cta) { display: none; } }
   main { max-width: 680px; margin: 0 auto; padding: 48px 16px 72px; text-align: center; }
   h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 5vw, 44px); line-height: 1.1; margin: 0 0 6px; }
   p { margin: 0 0 14px; }
@@ -100,7 +102,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":["VideoGame","WebApplication"],"name":"Swan Road daily puzzle","url":"https://swanroad.app/daily/","description":"Play today’s Swan Road puzzle free in your browser. Place an anchor, watch the pearls drift, and force one onto your shore. A new strategy puzzle every day.","image":"https://swanroad.app/assets/social.jpg","genre":["Puzzle","Strategy","Board game"],"gamePlatform":["Web browser","iOS"],"applicationCategory":"GameApplication","operatingSystem":"Any","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Mouse & Chisel Games","url":"https://mouseandchisel.com"},"installUrl":"https://apps.apple.com/app/id6821428315"}</script>
 </head>
 <body>
-<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a href="/#how">How it plays</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a class="cta" href="/daily/" aria-current="page">Daily puzzle</a><a href="/#how">How it plays</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav></div></header>
 <main>
   <h1>Today’s Swan Road puzzle</h1>
   <p class="muted" id="sub">A free daily strategy puzzle, the same for everyone</p>
