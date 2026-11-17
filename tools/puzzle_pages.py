@@ -45,7 +45,9 @@ PAGE = """<!doctype html>
   .brand {{ display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-family: var(--serif); font-size: 20px; font-weight: 600; }}
   .brand img {{ width: 32px; height: 32px; border-radius: 8px; }}
   nav a {{ color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }}
-  nav a:hover {{ color: var(--ink); }}
+  nav a:hover, nav a[aria-current] {{ color: var(--ink); }}
+  @media (max-width: 640px) {{ nav a:not(:last-child):not(.cta) {{ display: none; }} }}
+  @media (max-width: 380px) {{ nav a:not(.cta) {{ display: none; }} }}
   main {{ max-width: 680px; margin: 0 auto; padding: 48px 16px 72px; text-align: center; }}
   h1 {{ font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 5vw, 44px); line-height: 1.1; margin: 0 0 6px; }}
   p {{ margin: 0 0 14px; }}
@@ -59,7 +61,7 @@ PAGE = """<!doctype html>
 {style}</style>
 {head}</head>
 <body>
-<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a href="/#how">How it plays</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a class="cta" href="/daily/"{current}>Daily puzzle</a><a href="/#how">How it plays</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav></div></header>
 <main>
 {main}</main>
 <footer>
@@ -233,6 +235,7 @@ def write(path, link, **fields):
     out.parent.mkdir(parents=True, exist_ok=True)
     fields.setdefault("style", "")
     fields.setdefault("head", "")
+    fields.setdefault("current", "")
     fields.setdefault("image", "shot-puzzle.jpg")
     out.write_text(PAGE.format(path=path + "/", link=link, app_id=APP_ID, **fields))
 
@@ -259,6 +262,7 @@ write("daily", "daily",
       page_title="Daily strategy puzzle, free online · Swan Road",
       description=DAILY_DESCRIPTION,
       image="social.jpg",
+      current=' aria-current="page"',
       style=DAILY_STYLE,
       head='<script type="application/ld+json">' + embed(DAILY_DATA) + "</script>\n",
       main=DAILY_MAIN.replace("@STORE@", STORE).replace("@BOOK@", embed(web_book)))
