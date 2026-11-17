@@ -7,14 +7,13 @@ day's puzzle the way the app does, from the book this script writes into the pag
 run this again, then `python3 tools/check_daily.py <path to swanroad-sim>` to prove the page still plays every puzzle
 the way the simulator does, and `python3 tools/sitemap.py`. The numbered pages stay pictures: the archive is the app's."""
 import json, pathlib, sys
-import footer
+import campaign, footer
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 N = 7
 GLYPH = {"1": "⚪", "2": "🔶", "3": "🔷"}
-APP_ID = "6821428315"
 
-STORE = """<a class="btn" href="https://apps.apple.com/app/id6821428315"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.2-.9-1.7 0-3.2 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.9 1.2 1.9 2.6 3.2 2.5 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.9-1.1-3-4zM13.9 5.3c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg>Get it on the App Store</a>"""
+STORE = """<a class="btn" href="@HREF@"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.2-.9-1.7 0-3.2 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.9 1.2 1.9 2.6 3.2 2.5 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.9-1.1-3-4zM13.9 5.3c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg>Get it on the App Store</a>"""
 
 PAGE = """<!doctype html>
 <html lang="en">
@@ -31,7 +30,7 @@ PAGE = """<!doctype html>
 <meta property="og:url" content="https://swanroad.app/{path}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b1a2b">
-<meta name="apple-itunes-app" content="app-id={app_id}, app-argument=https://swanroad.app/{link}">
+<meta name="apple-itunes-app" content="{banner}">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -228,14 +227,19 @@ def board(cells):
         rows.append(row)
     return '  <div class="board" aria-label="the starting position">' + "\n".join(rows) + "</div>"
 
-def write(path, link, **fields):
+def store_button(name):
+    """The App Store button, carrying a campaign name (tools/campaign.py)."""
+    return STORE.replace("@HREF@", campaign.href(name))
+
+def write(path, link, name, **fields):
     out = ROOT / path / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     fields.setdefault("style", "")
     fields.setdefault("head", "")
     fields.setdefault("current", "")
     fields.setdefault("image", "shot-puzzle.jpg")
-    out.write_text(PAGE.format(path=path + "/", link=link, app_id=APP_ID, footer_css=footer.CSS, footer=footer.HTML, **fields))
+    out.write_text(PAGE.format(path=path + "/", banner=campaign.banner(name, f"https://swanroad.app/{link}"),
+                               footer_css=footer.CSS, footer=footer.HTML, **fields))
 
 book = json.load(open(sys.argv[1]))
 puzzles = book["puzzles"]
@@ -243,7 +247,7 @@ for p in puzzles:
     seat = "Light" if p["toMove"] == 0 else "Dark"
     other = "Dark" if seat == "Light" else "Light"
     moves = "one move" if p["n"] == 1 else f"{p['n']} moves"
-    write(f"p/{p['id']}", f"p/{p['id']}",
+    write(f"p/{p['id']}", f"p/{p['id']}", campaign.PUZZLE,
           page_title=f"Puzzle {p['id']} · Swan Road",
           description=f"Swan Road puzzle {p['id']}: force a pearl onto {seat}’s shore within {moves}, whatever {other} does.",
           main=PUZZLE_MAIN.format(
@@ -251,17 +255,17 @@ for p in puzzles:
               subtitle=f"Collect in {p['n']} · {seat} to move",
               board=board(p["cells"]),
               brief=f"{seat} to move. Force a pearl onto {seat}’s shore within {moves}, whatever {other} does. Anchors pull, pearls drift one square a turn toward the strongest pull, and a pearl that reaches a shore is collected.",
-              store=STORE))
+              store=store_button(campaign.PUZZLE)))
 
 # The page needs what the app's Puzzle type reads and no more, in the book's order: the day's puzzle is a position in it.
 keep = ("id", "n", "toMove", "turn", "cells", "supply", "score", "tree")
 web_book = {"version": book.get("version", 1), "puzzles": [{k: p[k] for k in keep} for p in puzzles]}
-write("daily", "daily",
+write("daily", "daily", campaign.DAILY,
       page_title="Daily strategy puzzle, free online · Swan Road",
       description=DAILY_DESCRIPTION,
       image="social.jpg",
       current=' aria-current="page"',
       style=DAILY_STYLE,
       head='<script type="application/ld+json">' + embed(DAILY_DATA) + "</script>\n",
-      main=DAILY_MAIN.replace("@STORE@", STORE).replace("@BOOK@", embed(web_book)))
+      main=DAILY_MAIN.replace("@STORE@", store_button(campaign.DAILY)).replace("@BOOK@", embed(web_book)))
 print(f"wrote {len(puzzles)} puzzle pages and daily/")

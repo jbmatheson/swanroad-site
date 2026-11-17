@@ -207,6 +207,17 @@
     return /iPhone|iPad|iPod/.test(nav.userAgent || "") || (nav.platform === "MacIntel" && nav.maxTouchPoints > 1);
   }
 
+  // ---- Where the visitor came from ----
+
+  /** A link to this page can say where it was posted, as /daily/?from=hn. The App Store link then carries that name
+      as its campaign in place of the page's own, so the install is counted for the post. The name is lower-case
+      letters, digits and hyphens, 30 at most; anything else is ignored, and so is a link with no campaign in it. */
+  function withSource(href, search) {
+    var from = /[?&]from=([a-z0-9-]{1,30})(?=&|$)/.exec(search || "");
+    if (!from || !/[?&]ct=[^&]*/.test(href)) return href;
+    return href.replace(/([?&]ct=)[^&]*/, "$1" + from[1]);
+  }
+
   // ---- The page ----
 
   var NAMES = ["Light", "Dark"];
@@ -599,6 +610,9 @@
     confirmBtn.onclick = confirm;
     shareBtn.onclick = share;
 
+    var store = doc.querySelector('main a.btn[href*="apps.apple.com"]');
+    if (store) store.setAttribute("href", withSource(store.getAttribute("href"), root.location.search));
+
     $("sub").textContent = dateText + " · Collect in " + puzzle.n + " · " + NAMES[seat] + " to move";
     setBoard(state.cells);
     if (phase === "gated") {
@@ -618,7 +632,7 @@
   var api = {
     N: N, tideDepth: tideDepth, parse: parse, tokenOf: tokenOf, stateOf: stateOf, legal: legal, played: played, pulls: pulls,
     orbMoves: orbMoves, apply: apply, isSound: isSound, dayNumber: dayNumber, dailyIndex: dailyIndex, isGated: isGated,
-    isIOS: isIOS, grid: grid, start: start, FIRST_MIXED_DAY: FIRST_MIXED_DAY, WEB_DAYS_ON_IOS: WEB_DAYS_ON_IOS
+    isIOS: isIOS, grid: grid, withSource: withSource, start: start, FIRST_MIXED_DAY: FIRST_MIXED_DAY, WEB_DAYS_ON_IOS: WEB_DAYS_ON_IOS
   };
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.SwanRoadPuzzle = api;
