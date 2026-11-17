@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The puzzle in your browser · Swan Road</title>
+<meta name="description" content="Today’s puzzle now plays on the website: the same puzzle as the app, a fourth copy of the rules, and what the page leaves out on purpose.">
+<link rel="canonical" href="https://swanroad.app/devlog/the-puzzle-in-your-browser/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The puzzle in your browser · Swan Road">
+<meta property="og:description" content="Today’s puzzle now plays on the website: the same puzzle as the app, a fourth copy of the rules, and what the page leaves out on purpose.">
+<meta property="og:image" content="https://swanroad.app/assets/social.jpg">
+<meta property="og:url" content="https://swanroad.app/devlog/the-puzzle-in-your-browser/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1a2b">
+<meta name="apple-itunes-app" content="app-id=6821428315">
+<link rel="alternate" type="application/atom+xml" title="Swan Road devlog" href="/devlog/feed.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"The puzzle in your browser","description":"Today’s puzzle now plays on the website: the same puzzle as the app, a fourth copy of the rules, and what the page leaves out on purpose.","datePublished":"2026-11-17","dateModified":"2026-11-17","url":"https://swanroad.app/devlog/the-puzzle-in-your-browser/","image":"https://swanroad.app/assets/social.jpg","author":{"@type":"Person","name":"Jim Matheson"},"publisher":{"@type":"Organization","name":"Mouse & Chisel Games","url":"https://mouseandchisel.com"}}</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fraunces.css">
+<style>
+  :root { --bg: #0b1a2b; --ink: #eef3f8; --muted: #a7b6c6; --accent: #7fd4ea; --sand: #e4d6b2; --card: #132b49; --line: rgba(255,255,255,.08);
+          --serif: "Fraunces", "Iowan Old Style", "Palatino", Georgia, serif; --sans: -apple-system, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 18px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  header.top { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: rgba(11,26,43,.72); border-bottom: 1px solid var(--line); }
+  header.top .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-family: var(--serif); font-size: 20px; font-weight: 600; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }
+  nav a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav a:not(:last-child):not(.cta) { display: none; } }
+  @media (max-width: 380px) { nav a:not(.cta) { display: none; } }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 16px 72px; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 5vw, 44px); line-height: 1.1; margin: 0 0 6px; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 26px; margin: 40px 0 10px; color: var(--sand); }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 20px; margin: 26px 0 6px; }
+  p, li { margin: 0 0 14px; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  ul, ol { padding-left: 22px; }
+  blockquote { margin: 0 0 14px; padding: 14px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  blockquote p:last-child { margin: 0; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 16px; background: var(--card); padding: 1px 6px; border-radius: 6px; }
+  .post { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .post h2 { margin: 0 0 4px; font-size: 24px; }
+  .post h2 a { color: var(--ink); text-decoration: none; }
+  .post h2 a:hover { color: var(--accent); }
+  .post .muted { font-size: 15px; }
+  .play { margin: 44px 0 0; padding: 18px 20px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  .play p:last-child { margin: 0; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: #0b1a2b; font-weight: 600; text-decoration: none; }
+  footer { border-top: 1px solid var(--line); padding: 28px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
+  footer a { color: var(--muted); margin: 0 8px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a class="cta" href="/daily/">Daily puzzle</a><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
+<main>
+<p class="muted">17 November 2026</p>
+<h1>The puzzle in your browser</h1>
+<p>A game with a new mechanic has a problem a screenshot cannot solve. Nobody knows what “the pearls drift” means until they have made one drift. From today the day’s puzzle <a href="/daily/">plays in a browser</a>, on a phone or at a desk, with nothing to install and no account.</p>
+<h2>The same puzzle as the app</h2>
+<p>The app sets one puzzle a day: a position, a side to move, and one to four moves in which to force a pearl onto your shore whatever the other side answers. The book holds eighty of them, and the app walks through it in a fixed order that mixes the short puzzles with the long ones. The page takes the same walk. So the page and the app show the same puzzle on the same day, and in both the day turns over at midnight where you are.</p>
+<h2>A wrong move is played out</h2>
+<p>In the app, a move that does not solve the puzzle is refused. The board jolts, a line of text says why, and nothing moves. That suits a player who already knows the game.</p>
+<p>Someone meeting the page may never have seen a pearl drift. So the page plays the wrong move: the anchor lands, the pearls slide, the page says it was not the one, and the board goes back. The hope is that a few wrong moves show the rules better than a paragraph can. The tries are counted, and the count goes into the result you can share.</p>
+<h2>A fourth copy of the rules</h2>
+<p><a href="/devlog/how-the-computer-plays/">The rules already existed three times</a>: in Python, in Rust, and in Swift for the app. A browser runs none of those, so they were written once more, in JavaScript.</p>
+<p>A fourth copy is a fourth chance to be wrong, and a puzzle page that drifted a pearl the wrong way would teach a game that does not exist. So before the page went up, every legal move from every position on every solution in the book was played twice, once by the JavaScript rules and once by the Python ones, and the boards were compared. That came to 15,233 moves and no differences.</p>
+<p>Then the check was tested the way a smoke alarm is. Six faults were planted in the rules, one at a time. It caught five. The sixth removed the rule that a pearl may not drift onto a square where another pearl stood, and nothing changed, for a good reason: a pearl is never pulled toward the pearl beside it, because that pearl blocks the pull. The line guards against something the other rules already rule out.</p>
+<h2>What the page leaves out</h2>
+<p>One puzzle a day, and only today’s. No hints, no streak, no archive. Those are in the app, along with everything a puzzle is not: an opponent who fights back, a friend across the table, the daily game and its leaderboard.</p>
+<p>On an iPhone or iPad the page plays three daily puzzles and then points to the app, where the daily puzzle is free. A phone that can run the game should run the game. Anywhere else, the page never stops you.</p>
+<p>The page remembers the days you solved in your own browser, so it can say so when you come back, and it sends nothing anywhere. The <a href="/privacy/">privacy policy</a> has the details.</p>
+<aside class="play">
+<p><strong>Play it.</strong> <a href="/daily/">Today’s puzzle plays in your browser</a>, with nothing to install. Swan Road is free on the App Store for iPhone and iPad, with no ads and no account.</p>
+<p><a class="btn" href="https://apps.apple.com/app/id6821428315">Get it on the App Store</a></p>
+</aside>
+<p class="muted"><a href="/devlog/">All posts</a></p>
+</main>
+<footer>
+  <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel Games</a></div>
+  <div><a href="/daily/">Daily puzzle</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
+</footer>
+</body>
+</html>

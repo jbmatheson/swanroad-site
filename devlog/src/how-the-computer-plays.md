@@ -2,6 +2,7 @@ title: How the computer plays
 date: 2026-11-14
 description: Four levels, one search, and why Medium looks as deep as Hard but settles for less.
 published: true
+updated: 2026-11-17
 
 The computer opponent in Swan Road is a plain alpha-beta search: look ahead a fixed number of turns, score the positions at the end, and pick the move that leads to the best one if the other side also plays well. No neural network. The interesting choices were how deep to look and what to do with the answer.
 
@@ -10,6 +11,8 @@ The computer opponent in Swan Road is a plain alpha-beta search: look ahead a fi
 The rules exist three times. A Python version was the first, written to try variants quickly. A Rust version came next, fast enough to play a hundred games against itself in a minute, and it is the one the balance work ran on. The Swift version is the one in the app.
 
 Three versions can disagree, and a disagreement would mean the app plays a different game from the one the balance work tested. So two checks run whenever the rules change: every Python game is replayed in Rust step by step, and the Swift search is compared with the Rust search on random positions until the values match exactly. Both must stay at zero mismatches.
+
+*Added 17 November.* There is now a fourth copy. [Today’s puzzle plays in a browser](/daily/), so the rules were written once more, in JavaScript, and held to the same standard: every legal move from every position on every solution in the puzzle book is played through the JavaScript rules and through the Python ones, and the boards must match. [The puzzle in your browser](/devlog/the-puzzle-in-your-browser/) has the rest.
 
 ## How deep
 

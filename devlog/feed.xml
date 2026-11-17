@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Swan Road devlog</title>
+  <subtitle>Notes from making the game.</subtitle>
+  <link href="https://swanroad.app/devlog/"/>
+  <link rel="self" href="https://swanroad.app/devlog/feed.xml"/>
+  <id>https://swanroad.app/devlog/</id>
+  <updated>2026-11-17T12:00:00Z</updated>
+  <author><name>Jim Matheson</name></author>
+  <entry>
+    <title>The puzzle in your browser</title>
+    <link href="https://swanroad.app/devlog/the-puzzle-in-your-browser/"/>
+    <id>https://swanroad.app/devlog/the-puzzle-in-your-browser/</id>
+    <published>2026-11-17T12:00:00Z</published>
+    <updated>2026-11-17T12:00:00Z</updated>
+    <summary>Today’s puzzle now plays on the website: the same puzzle as the app, a fourth copy of the rules, and what the page leaves out on purpose.</summary>
+    <content type="html">&lt;p&gt;A game with a new mechanic has a problem a screenshot cannot solve. Nobody knows what “the pearls drift” means until they have made one drift. From today the day’s puzzle &lt;a href=&quot;/daily/&quot;&gt;plays in a browser&lt;/a&gt;, on a phone or at a desk, with nothing to install and no account.&lt;/p&gt;
+&lt;h2&gt;The same puzzle as the app&lt;/h2&gt;
+&lt;p&gt;The app sets one puzzle a day: a position, a side to move, and one to four moves in which to force a pearl onto your shore whatever the other side answers. The book holds eighty of them, and the app walks through it in a fixed order that mixes the short puzzles with the long ones. The page takes the same walk. So the page and the app show the same puzzle on the same day, and in both the day turns over at midnight where you are.&lt;/p&gt;
+&lt;h2&gt;A wrong move is played out&lt;/h2&gt;
+&lt;p&gt;In the app, a move that does not solve the puzzle is refused. The board jolts, a line of text says why, and nothing moves. That suits a player who already knows the game.&lt;/p&gt;
+&lt;p&gt;Someone meeting the page may never have seen a pearl drift. So the page plays the wrong move: the anchor lands, the pearls slide, the page says it was not the one, and the board goes back. The hope is that a few wrong moves show the rules better than a paragraph can. The tries are counted, and the count goes into the result you can share.&lt;/p&gt;
+&lt;h2&gt;A fourth copy of the rules&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;/devlog/how-the-computer-plays/&quot;&gt;The rules already existed three times&lt;/a&gt;: in Python, in Rust, and in Swift for the app. A browser runs none of those, so they were written once more, in JavaScript.&lt;/p&gt;
+&lt;p&gt;A fourth copy is a fourth chance to be wrong, and a puzzle page that drifted a pearl the wrong way would teach a game that does not exist. So before the page went up, every legal move from every position on every solution in the book was played twice, once by the JavaScript rules and once by the Python ones, and the boards were compared. That came to 15,233 moves and no differences.&lt;/p&gt;
+&lt;p&gt;Then the check was tested the way a smoke alarm is. Six faults were planted in the rules, one at a time. It caught five. The sixth removed the rule that a pearl may not drift onto a square where another pearl stood, and nothing changed, for a good reason: a pearl is never pulled toward the pearl beside it, because that pearl blocks the pull. The line guards against something the other rules already rule out.&lt;/p&gt;
+&lt;h2&gt;What the page leaves out&lt;/h2&gt;
+&lt;p&gt;One puzzle a day, and only today’s. No hints, no streak, no archive. Those are in the app, along with everything a puzzle is not: an opponent who fights back, a friend across the table, the daily game and its leaderboard.&lt;/p&gt;
+&lt;p&gt;On an iPhone or iPad the page plays three daily puzzles and then points to the app, where the daily puzzle is free. A phone that can run the game should run the game. Anywhere else, the page never stops you.&lt;/p&gt;
+&lt;p&gt;The page remembers the days you solved in your own browser, so it can say so when you come back, and it sends nothing anywhere. The &lt;a href=&quot;/privacy/&quot;&gt;privacy policy&lt;/a&gt; has the details.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>How the computer plays</title>
+    <link href="https://swanroad.app/devlog/how-the-computer-plays/"/>
+    <id>https://swanroad.app/devlog/how-the-computer-plays/</id>
+    <published>2026-11-14T12:00:00Z</published>
+    <updated>2026-11-17T12:00:00Z</updated>
+    <summary>Four levels, one search, and why Medium looks as deep as Hard but settles for less.</summary>
+    <content type="html">&lt;p&gt;The computer opponent in Swan Road is a plain alpha-beta search: look ahead a fixed number of turns, score the positions at the end, and pick the move that leads to the best one if the other side also plays well. No neural network. The interesting choices were how deep to look and what to do with the answer.&lt;/p&gt;
+&lt;h2&gt;Three copies of the rules&lt;/h2&gt;
+&lt;p&gt;The rules exist three times. A Python version was the first, written to try variants quickly. A Rust version came next, fast enough to play a hundred games against itself in a minute, and it is the one the balance work ran on. The Swift version is the one in the app.&lt;/p&gt;
+&lt;p&gt;Three versions can disagree, and a disagreement would mean the app plays a different game from the one the balance work tested. So two checks run whenever the rules change: every Python game is replayed in Rust step by step, and the Swift search is compared with the Rust search on random positions until the values match exactly. Both must stay at zero mismatches.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Added 17 November.&lt;/em&gt; There is now a fourth copy. &lt;a href=&quot;/daily/&quot;&gt;Today’s puzzle plays in a browser&lt;/a&gt;, so the rules were written once more, in JavaScript, and held to the same standard: every legal move from every position on every solution in the puzzle book is played through the JavaScript rules and through the Python ones, and the boards must match. &lt;a href=&quot;/devlog/the-puzzle-in-your-browser/&quot;&gt;The puzzle in your browser&lt;/a&gt; has the rest.&lt;/p&gt;
+&lt;h2&gt;How deep&lt;/h2&gt;
+&lt;p&gt;Depth is the lever. On an iPhone 16 Plus, looking six turns ahead on the 7×7 board takes between a quarter of a second and six tenths of a second per move. One turn deeper takes three to fifteen seconds. So Expert looks six ahead and stops there, and five ahead on the bigger 9×9 board, where each turn has more moves.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Easy&lt;/strong&gt; looks two ahead.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Medium&lt;/strong&gt; and &lt;strong&gt;Hard&lt;/strong&gt; look four ahead.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Expert&lt;/strong&gt; looks six ahead.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Why Medium is not just a shallower Hard&lt;/h2&gt;
+&lt;p&gt;The first Medium looked two turns ahead and picked its best move. It was no stronger than Easy. Looking three ahead was closer to Hard than to Easy. There was no depth between them that felt like a middle.&lt;/p&gt;
+&lt;p&gt;What worked was depth with a loose hand. Medium looks as far ahead as Hard, then picks at random from its three best moves, as long as they are within a band of the best. The band is sixty points, which is about six rows of pearl drift and well short of a whole pearl. It makes Medium a player who sees what Hard sees and sometimes takes the second-best road. Easy does the same with its six best moves. Hard and Expert always take the best.&lt;/p&gt;
+&lt;h2&gt;The daily game&lt;/h2&gt;
+&lt;p&gt;The daily game is the same board for everyone, with one try. For that to be fair, the computer has to make the same reply on every phone, and a time limit would not do it: a new phone searches more in a second than an old one. So the daily opponent stops at a fixed number of positions examined instead of a fixed time. On an iPhone 12, the longest reply stays under about eight seconds.&lt;/p&gt;
+&lt;h2&gt;How strong&lt;/h2&gt;
+&lt;p&gt;The campaign climbs from a gentle first opponent to Expert, and the climb was measured, not guessed: each level played hundreds of games against the others, and the rating anchors in the app come from the gaps those games showed. A strong player beats Expert about one time in twenty. For a while the daily game cycled Expert in every third day, and those days ended most streaks, so the daily now alternates Medium and Hard. Expert is still there under Play, for the days you want to lose with dignity.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Playing without looking</title>
+    <link href="https://swanroad.app/devlog/playing-without-looking/"/>
+    <id>https://swanroad.app/devlog/playing-without-looking/</id>
+    <published>2026-11-14T12:00:00Z</published>
+    <updated>2026-11-17T12:00:00Z</updated>
+    <summary>What VoiceOver says about a square, and the other settings the game listens to.</summary>
+    <content type="html">&lt;p&gt;A board game on a phone is mostly a picture, and a picture is the hardest thing to make work for someone who cannot see it. Swan Road was built to be played with VoiceOver from the first version, and this post is about what that took.&lt;/p&gt;
+&lt;h2&gt;What a square says&lt;/h2&gt;
+&lt;p&gt;Every square on the board is its own element. Touch one and VoiceOver reads a sentence built from what is there:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Row 3, column 4, pearl, drifting up, Light’s shore, pulled 3 up, 1 left.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The parts come in a fixed order so a regular player learns to listen for the one they need. The position first. Then what is on the square: a pearl, a Light anchor, a Dark anchor, or empty. For a pearl, what it will do when the turn ends: &lt;em&gt;drifting up&lt;/em&gt;, or &lt;em&gt;held&lt;/em&gt; when the pulls cancel or another pearl blocks the way. If a shore runs through that row, whose shore it is. Last, the pulls on the pearl, by strength and direction.&lt;/p&gt;
+&lt;p&gt;While you have a move pending but not yet confirmed, the pearls that would change say so: &lt;em&gt;this move drifts it left&lt;/em&gt;. That is the spoken version of the arrows sighted players see before they confirm.&lt;/p&gt;
+&lt;p&gt;The tide bar has a spoken label too: &lt;em&gt;Tide&lt;/em&gt;, or &lt;em&gt;Tide up: shores 3 deep&lt;/em&gt; once it has risen.&lt;/p&gt;
+&lt;h2&gt;Type&lt;/h2&gt;
+&lt;p&gt;The text scales with the Dynamic Type setting, including the board’s captions and the rules, up into the accessibility sizes. It stops growing at the size where the board would no longer fit on the screen, so the board keeps its squares. The splash screen caps its own type at the largest standard size, since it is decorative and a tap skips it.&lt;/p&gt;
+&lt;h2&gt;Motion&lt;/h2&gt;
+&lt;p&gt;With Reduce Motion on, the pulsing highlight on a suggested square becomes a steady one, the puzzle animations hold still, and the opening screen shortens its fades and skips the small drop of the pearl. Nothing you need is conveyed by motion alone; the arrows and the spoken labels carry the same information.&lt;/p&gt;
+&lt;h2&gt;Contrast and colour&lt;/h2&gt;
+&lt;p&gt;With Increase Contrast on, secondary text brightens; in the Night look, from sixty percent of the ink colour to eighty-five. In every look, the colours were chosen so that secondary text clears a 4.5 to 1 contrast against its background.&lt;/p&gt;
+&lt;p&gt;Colour never carries meaning on its own. The two shores are told apart by position, by the names in the spoken labels, and in the Nautical chart look by hatching: Light’s shore is hatched one way and Dark’s is cross-hatched.&lt;/p&gt;
+&lt;h2&gt;What it cost&lt;/h2&gt;
+&lt;p&gt;Less than you would think, because most of it is the same work as making the game explain itself to anyone. The spoken label for a square is the drift preview in words. The tide bar’s label is the tide bar in words. Once the game can say what it is doing, saying it to VoiceOver is one more line.&lt;/p&gt;
+&lt;h2&gt;On the website&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Added 17 November.&lt;/em&gt; &lt;a href=&quot;/daily/&quot;&gt;Today’s puzzle&lt;/a&gt; now plays in a browser, and the page follows the same idea. Each square is a button with a spoken label, a line of text reports every move and where the pearls drifted, and the arrow keys move from square to square. It has not yet had the testing the app has had. If you use a screen reader and try it, the &lt;a href=&quot;/support/&quot;&gt;support page&lt;/a&gt; is the place to say what works and what does not.&lt;/p&gt;</content>
+  </entry>
+</feed>

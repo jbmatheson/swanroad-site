@@ -33,3 +33,5 @@ There is one more: a tie in pearls goes to Dark, who moved second. Light’s fir
 ## What the rules do not say
 
 They do not say where to put your anchors. After a few games you start to see lanes: a column with a pearl in it and nothing between the pearl and your shore. You start to count pulls on your fingers before you place. Then you stop counting, because the arrows on the board show you where every pearl will drift before you confirm. That is the first thing I would tell a new player: look at the arrows, then place.
+
+The quickest way to see all of this is to do it: [today’s puzzle](/daily/) plays in a browser.
