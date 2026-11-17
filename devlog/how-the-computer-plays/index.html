@@ -64,7 +64,7 @@
 <h1>How the computer plays</h1>
 <p>The computer opponent in Swan Road is a plain alpha-beta search: look ahead a fixed number of turns, score the positions at the end, and pick the move that leads to the best one if the other side also plays well. No neural network. The interesting choices were how deep to look and what to do with the answer.</p>
 <h2>Three copies of the rules</h2>
-<p>The rules exist three times. A Python version was the first, written to try variants quickly. A Rust version came next, fast enough to play a hundred games against itself in a minute, and it is the one the balance work ran on. The Swift version is the one in the app.</p>
+<p><a href="/devlog/why-the-pearls-drift/">The rules</a> exist three times. A Python version was the first, written to try variants quickly. A Rust version came next, fast enough to play a hundred games against itself in a minute, and it is the one the balance work ran on. The Swift version is the one in the app.</p>
 <p>Three versions can disagree, and a disagreement would mean the app plays a different game from the one the balance work tested. So two checks run whenever the rules change: every Python game is replayed in Rust step by step, and the Swift search is compared with the Rust search on random positions until the values match exactly. Both must stay at zero mismatches.</p>
 <p><em>Added 17 November.</em> There is now a fourth copy. <a href="/daily/">Today’s puzzle plays in a browser</a>, so the rules were written once more, in JavaScript, and held to the same standard: every legal move from every position on every solution in the puzzle book is played through the JavaScript rules and through the Python ones, and the boards must match. <a href="/devlog/the-puzzle-in-your-browser/">The puzzle in your browser</a> has the rest.</p>
 <h2>How deep</h2>
@@ -85,6 +85,12 @@
 <p><strong>Play it.</strong> <a href="/daily/">Today’s puzzle plays in your browser</a>, with nothing to install. Swan Road is free on the App Store for iPhone and iPad, with no ads and no account.</p>
 <p><a class="btn" href="https://apps.apple.com/app/id6821428315">Get it on the App Store</a></p>
 </aside>
+<h2>More from the devlog</h2>
+<ul>
+<li><a href="/devlog/the-puzzle-in-your-browser/">The puzzle in your browser</a>: Today’s puzzle now plays on the website: the same puzzle as the app, a fourth copy of the rules, and what the page leaves out on purpose.</li>
+<li><a href="/devlog/why-the-pearls-drift/">Why the pearls drift</a>: The one rule the whole game hangs on, and the four small rules that keep it from stalling.</li>
+<li><a href="/devlog/playing-without-looking/">Playing without looking</a>: What VoiceOver says about a square, and the other settings the game listens to.</li>
+</ul>
 <p class="muted"><a href="/devlog/">All posts</a></p>
 </main>
 <footer>
