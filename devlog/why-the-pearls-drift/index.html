@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the pearls drift · Swan Road</title>
+<meta name="description" content="The one rule the whole game hangs on, and the four small rules that keep it from stalling.">
+<link rel="canonical" href="https://swanroad.app/devlog/why-the-pearls-drift/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why the pearls drift · Swan Road">
+<meta property="og:description" content="The one rule the whole game hangs on, and the four small rules that keep it from stalling.">
+<meta property="og:image" content="https://swanroad.app/assets/social.jpg">
+<meta property="og:url" content="https://swanroad.app/devlog/why-the-pearls-drift/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1a2b">
+<meta name="apple-itunes-app" content="app-id=6821428315">
+<link rel="alternate" type="application/atom+xml" title="Swan Road devlog" href="/devlog/feed.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Why the pearls drift","description":"The one rule the whole game hangs on, and the four small rules that keep it from stalling.","datePublished":"2026-11-17","dateModified":"2026-11-17","url":"https://swanroad.app/devlog/why-the-pearls-drift/","image":"https://swanroad.app/assets/social.jpg","author":{"@type":"Person","name":"Jim Matheson"},"publisher":{"@type":"Organization","name":"Mouse & Chisel Games","url":"https://mouseandchisel.com"}}</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fraunces.css">
+<style>
+  :root { --bg: #0b1a2b; --ink: #eef3f8; --muted: #a7b6c6; --accent: #7fd4ea; --sand: #e4d6b2; --card: #132b49; --line: rgba(255,255,255,.08);
+          --serif: "Fraunces", "Iowan Old Style", "Palatino", Georgia, serif; --sans: -apple-system, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 18px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  header.top { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: rgba(11,26,43,.72); border-bottom: 1px solid var(--line); }
+  header.top .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-family: var(--serif); font-size: 20px; font-weight: 600; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }
+  nav a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav a:not(:last-child):not(.cta) { display: none; } }
+  @media (max-width: 380px) { nav a:not(.cta) { display: none; } }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 16px 72px; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 5vw, 44px); line-height: 1.1; margin: 0 0 6px; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 26px; margin: 40px 0 10px; color: var(--sand); }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 20px; margin: 26px 0 6px; }
+  p, li { margin: 0 0 14px; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  ul, ol { padding-left: 22px; }
+  blockquote { margin: 0 0 14px; padding: 14px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  blockquote p:last-child { margin: 0; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 16px; background: var(--card); padding: 1px 6px; border-radius: 6px; }
+  .post { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .post h2 { margin: 0 0 4px; font-size: 24px; }
+  .post h2 a { color: var(--ink); text-decoration: none; }
+  .post h2 a:hover { color: var(--accent); }
+  .post .muted { font-size: 15px; }
+  .play { margin: 44px 0 0; padding: 18px 20px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  .play p:last-child { margin: 0; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: #0b1a2b; font-weight: 600; text-decoration: none; }
+  footer { border-top: 1px solid var(--line); padding: 28px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
+  footer a { color: var(--muted); margin: 0 8px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a class="cta" href="/daily/">Daily puzzle</a><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
+<main>
+<p class="muted">17 November 2026</p>
+<h1>Why the pearls drift</h1>
+<p>Most board games move pieces. In Swan Road you never move a pearl. You place an anchor, and the pearls move themselves.</p>
+<h2>The pull</h2>
+<p>An anchor pulls a pearl when they share a row or column, are at most three squares apart, and nothing stands between them. Touching pulls with 3, two squares away with 2, three away with 1. Every anchor pulls toward itself, whoever owns it.</p>
+<p>That last part matters more than it sounds. Your opponent’s anchors pull too, so a pearl near their anchor is in their hands even when it sits in front of yours. The board is never “my side” and “your side”. It is one stretch of water, and every anchor on it is tugging.</p>
+<h2>The drift</h2>
+<p>After every turn, each pearl adds up the pulls on it: up minus down, right minus left. It moves one square along whichever total is larger. If the totals are equal, or there are none, it stays. All the moving pearls move at once.</p>
+<p>Equal pulls cancel. That line is the heart of the game. An anchor is not only a way to bring a pearl toward you; it is a way to hold a pearl still against someone else’s anchor. Two anchors facing each other across a pearl make a standoff, and the next anchor either side places decides it.</p>
+<p>A pearl arrives on a shore row and is collected by whoever owns that shore. First to three wins.</p>
+<h2>Four small rules</h2>
+<p>Those two rules make a game, but on their own they make a slow one. Thousands of games between two copies of the computer player, played in a simulator before the app existed, found the places it stalled. Four rules fix them.</p>
+<ol>
+<li><strong>The first four turns are setup.</strong> Nothing drifts until turn five. Without that, the first player could drag a pearl two squares before the second player had placed anything.</li>
+<li><strong>Two pearls heading for the same square both stay.</strong> Otherwise the order they moved in would decide games.</li>
+<li><strong>A pearl that lands on an anchor knocks it back into its owner’s supply.</strong> So a pearl can be a weapon.</li>
+<li><strong>The tide.</strong> After turn 40 the second row from each edge counts as shore too; after turn 50, the third row. If six drifting turns pass with no pearl moving, the tide rises a level early. A locked board does not have to wait.</li>
+</ol>
+<p>There is one more: a tie in pearls goes to Dark, who moved second. Light’s first move is worth something, and the simulator measured how much. Giving ties to Dark is the smallest correction that evens it out, the way komi does in Go.</p>
+<h2>What the rules do not say</h2>
+<p>They do not say where to put your anchors. After a few games you start to see lanes: a column with a pearl in it and nothing between the pearl and your shore. You start to count pulls on your fingers before you place. Then you stop counting, because the arrows on the board show you where every pearl will drift before you confirm. That is the first thing I would tell a new player: look at the arrows, then place.</p>
+<aside class="play">
+<p><strong>Play it.</strong> <a href="/daily/">Today’s puzzle plays in your browser</a>, with nothing to install. Swan Road is free on the App Store for iPhone and iPad, with no ads and no account.</p>
+<p><a class="btn" href="https://apps.apple.com/app/id6821428315">Get it on the App Store</a></p>
+</aside>
+<p class="muted"><a href="/devlog/">All posts</a></p>
+</main>
+<footer>
+  <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel Games</a></div>
+  <div><a href="/daily/">Daily puzzle</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
+</footer>
+</body>
+</html>
