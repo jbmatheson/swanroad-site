@@ -2,6 +2,7 @@ title: Playing without looking
 date: 2026-11-14
 description: What VoiceOver says about a square, and the other settings the game listens to.
 published: true
+updated: 2026-11-17
 
 A board game on a phone is mostly a picture, and a picture is the hardest thing to make work for someone who cannot see it. Swan Road was built to be played with VoiceOver from the first version, and this post is about what that took.
 
@@ -34,3 +35,7 @@ Colour never carries meaning on its own. The two shores are told apart by positi
 ## What it cost
 
 Less than you would think, because most of it is the same work as making the game explain itself to anyone. The spoken label for a square is the drift preview in words. The tide bar’s label is the tide bar in words. Once the game can say what it is doing, saying it to VoiceOver is one more line.
+
+## On the website
+
+*Added 17 November.* [Today’s puzzle](/daily/) now plays in a browser, and the page follows the same idea. Each square is a button with a spoken label, a line of text reports every move and where the pearls drifted, and the arrow keys move from square to square. It has not yet had the testing the app has had. If you use a screen reader and try it, the [support page](/support/) is the place to say what works and what does not.

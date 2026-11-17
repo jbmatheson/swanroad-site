@@ -14,6 +14,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b1a2b">
 <meta name="apple-itunes-app" content="app-id=6821428315">
+<link rel="alternate" type="application/atom+xml" title="Swan Road devlog" href="/devlog/feed.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Playing without looking","description":"What VoiceOver says about a square, and the other settings the game listens to.","datePublished":"2026-11-14","dateModified":"2026-11-17","url":"https://swanroad.app/devlog/playing-without-looking/","image":"https://swanroad.app/assets/social.jpg","author":{"@type":"Person","name":"Jim Matheson"},"publisher":{"@type":"Organization","name":"Mouse & Chisel Games","url":"https://mouseandchisel.com"}}</script>
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -48,6 +50,9 @@
   .post h2 a { color: var(--ink); text-decoration: none; }
   .post h2 a:hover { color: var(--accent); }
   .post .muted { font-size: 15px; }
+  .play { margin: 44px 0 0; padding: 18px 20px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  .play p:last-child { margin: 0; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: #0b1a2b; font-weight: 600; text-decoration: none; }
   footer { border-top: 1px solid var(--line); padding: 28px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
   footer a { color: var(--muted); margin: 0 8px; }
 </style>
@@ -55,7 +60,7 @@
 <body>
 <header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a class="cta" href="/daily/">Daily puzzle</a><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
 <main>
-<p class="muted">14 November 2026</p>
+<p class="muted">14 November 2026 · updated 17 November 2026</p>
 <h1>Playing without looking</h1>
 <p>A board game on a phone is mostly a picture, and a picture is the hardest thing to make work for someone who cannot see it. Swan Road was built to be played with VoiceOver from the first version, and this post is about what that took.</p>
 <h2>What a square says</h2>
@@ -75,6 +80,12 @@
 <p>Colour never carries meaning on its own. The two shores are told apart by position, by the names in the spoken labels, and in the Nautical chart look by hatching: Light’s shore is hatched one way and Dark’s is cross-hatched.</p>
 <h2>What it cost</h2>
 <p>Less than you would think, because most of it is the same work as making the game explain itself to anyone. The spoken label for a square is the drift preview in words. The tide bar’s label is the tide bar in words. Once the game can say what it is doing, saying it to VoiceOver is one more line.</p>
+<h2>On the website</h2>
+<p><em>Added 17 November.</em> <a href="/daily/">Today’s puzzle</a> now plays in a browser, and the page follows the same idea. Each square is a button with a spoken label, a line of text reports every move and where the pearls drifted, and the arrow keys move from square to square. It has not yet had the testing the app has had. If you use a screen reader and try it, the <a href="/support/">support page</a> is the place to say what works and what does not.</p>
+<aside class="play">
+<p><strong>Play it.</strong> <a href="/daily/">Today’s puzzle plays in your browser</a>, with nothing to install. Swan Road is free on the App Store for iPhone and iPad, with no ads and no account.</p>
+<p><a class="btn" href="https://apps.apple.com/app/id6821428315">Get it on the App Store</a></p>
+</aside>
 <p class="muted"><a href="/devlog/">All posts</a></p>
 </main>
 <footer>
