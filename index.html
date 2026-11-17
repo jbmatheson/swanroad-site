@@ -94,11 +94,12 @@
   @media (max-width: 760px) { .complete { grid-template-columns: 1fr; } }
   #ideas .lead { margin-bottom: 0; }
 
-  footer { padding: 36px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between; }
-  footer a { color: var(--muted); text-decoration: none; margin-right: 18px; }
+  footer { padding: 36px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; text-align: center; }
+  footer .wrap > div { line-height: 2; }
+  footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 20px; }
+  footer .wrap > div:last-child { margin-top: 12px; font-size: 14px; line-height: 1.6; opacity: .75; }
+  footer a { color: var(--muted); text-decoration: none; white-space: nowrap; }
   footer a:hover { color: var(--ink); }
-  footer .wrap > :last-child { flex-basis: 100%; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
@@ -149,6 +150,7 @@
         <div class="body"><div class="n">Three</div><h3>The tide rises</h3><p class="muted">From turn 41 both shores grow deeper, and the tide comes early if the board goes still. Sixty turns at most; a tie goes to the second player.</p></div>
       </article>
     </div>
+    <p class="muted" style="margin-top:22px">The rules in full, and the reasons for them: <a href="devlog/why-the-pearls-drift/">Why the pearls drift</a>. Or <a href="daily/">try today’s puzzle</a> and watch one drift.</p>
   </div>
 </section>
 
@@ -211,7 +213,7 @@
 <footer>
   <div class="wrap">
     <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel Games</a></div>
-    <div><a href="daily/">Daily puzzle</a><a href="support/">Support</a><a href="privacy/">Privacy policy</a><a href="press/">Press</a><a href="mailto:jim@mouseandchisel.com">jim@mouseandchisel.com</a></div>
+    <div class="links"><a href="daily/">Daily puzzle</a><a href="devlog/">Devlog</a><a href="support/">Support</a><a href="privacy/">Privacy policy</a><a href="press/">Press</a><a href="mailto:jim@mouseandchisel.com">jim@mouseandchisel.com</a></div>
     <div>© 2026 Jim Matheson. The name is the Old English kenning for the sea, from Beowulf.</div>
   </div>
 </footer>

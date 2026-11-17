@@ -8,7 +8,7 @@ The computer opponent in Swan Road is a plain alpha-beta search: look ahead a fi
 
 ## Three copies of the rules
 
-The rules exist three times. A Python version was the first, written to try variants quickly. A Rust version came next, fast enough to play a hundred games against itself in a minute, and it is the one the balance work ran on. The Swift version is the one in the app.
+[The rules](/devlog/why-the-pearls-drift/) exist three times. A Python version was the first, written to try variants quickly. A Rust version came next, fast enough to play a hundred games against itself in a minute, and it is the one the balance work ran on. The Swift version is the one in the app.
 
 Three versions can disagree, and a disagreement would mean the app plays a different game from the one the balance work tested. So two checks run whenever the rules change: every Python game is replayed in Rust step by step, and the Swift search is compared with the Rust search on random positions until the values match exactly. Both must stay at zero mismatches.
 

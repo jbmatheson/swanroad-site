@@ -67,7 +67,7 @@
 <p>The app sets one puzzle a day: a position, a side to move, and one to four moves in which to force a pearl onto your shore whatever the other side answers. The book holds eighty of them, and the app walks through it in a fixed order that mixes the short puzzles with the long ones. The page takes the same walk. So the page and the app show the same puzzle on the same day, and in both the day turns over at midnight where you are.</p>
 <h2>A wrong move is played out</h2>
 <p>In the app, a move that does not solve the puzzle is refused. The board jolts, a line of text says why, and nothing moves. That suits a player who already knows the game.</p>
-<p>Someone meeting the page may never have seen a pearl drift. So the page plays the wrong move: the anchor lands, the pearls slide, the page says it was not the one, and the board goes back. The hope is that a few wrong moves show the rules better than a paragraph can. The tries are counted, and the count goes into the result you can share.</p>
+<p>Someone meeting the page may never have seen a pearl drift. So the page plays the wrong move: the anchor lands, the pearls slide, the page says it was not the one, and the board goes back. The hope is that a few wrong moves show the rules better than a paragraph can. The paragraphs are in <a href="/devlog/why-the-pearls-drift/">Why the pearls drift</a>. The tries are counted, and the count goes into the result you can share.</p>
 <h2>A fourth copy of the rules</h2>
 <p><a href="/devlog/how-the-computer-plays/">The rules already existed three times</a>: in Python, in Rust, and in Swift for the app. A browser runs none of those, so they were written once more, in JavaScript.</p>
 <p>A fourth copy is a fourth chance to be wrong, and a puzzle page that drifted a pearl the wrong way would teach a game that does not exist. So before the page went up, every legal move from every position on every solution in the book was played twice, once by the JavaScript rules and once by the Python ones, and the boards were compared. That came to 15,233 moves and no differences.</p>
@@ -80,6 +80,12 @@
 <p><strong>Play it.</strong> <a href="/daily/">Today’s puzzle plays in your browser</a>, with nothing to install. Swan Road is free on the App Store for iPhone and iPad, with no ads and no account.</p>
 <p><a class="btn" href="https://apps.apple.com/app/id6821428315">Get it on the App Store</a></p>
 </aside>
+<h2>More from the devlog</h2>
+<ul>
+<li><a href="/devlog/why-the-pearls-drift/">Why the pearls drift</a>: The one rule the whole game hangs on, and the four small rules that keep it from stalling.</li>
+<li><a href="/devlog/how-the-computer-plays/">How the computer plays</a>: Four levels, one search, and why Medium looks as deep as Hard but settles for less.</li>
+<li><a href="/devlog/playing-without-looking/">Playing without looking</a>: What VoiceOver says about a square, and the other settings the game listens to.</li>
+</ul>
 <p class="muted"><a href="/devlog/">All posts</a></p>
 </main>
 <footer>

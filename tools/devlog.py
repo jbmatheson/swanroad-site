@@ -9,7 +9,7 @@ the posts. A post starts with a header block:
     updated: 2026-11-17        (optional: the day a published post was last added to)
 
 Only published posts are written and listed; --drafts includes the rest for a local look. Every post ends with the
-same closing block: the daily puzzle and the App Store. devlog/feed.xml is an Atom feed of the published posts. Run
+same closing block: the daily puzzle and the App Store, then the other posts. devlog/feed.xml is an Atom feed of the published posts. Run
 from anywhere:
     uv run --with markdown python3 tools/devlog.py [--drafts]
 """
@@ -165,6 +165,10 @@ def main(drafts=False):
         page = HEAD.format(title=m["title"], description=m["description"], path=f"devlog/{m['slug']}/", extra=FEED + article(m))
         page += f"<p class=\"muted\">{dated(m)}</p>\n<h1>{m['title']}</h1>\n{html}\n"
         page += PLAY.format(store=STORE)
+        others = [o for o, _ in posts if o["slug"] != m["slug"]]
+        if others:
+            page += "<h2>More from the devlog</h2>\n<ul>\n" + "".join(
+                f"<li><a href=\"/devlog/{o['slug']}/\">{o['title']}</a>: {o['description']}</li>\n" for o in others) + "</ul>\n"
         page += "<p class=\"muted\"><a href=\"/devlog/\">All posts</a></p>\n" + FOOT
         (OUT / m["slug"]).mkdir(parents=True); (OUT / m["slug"] / "index.html").write_text(page, encoding="utf-8")
     index = HEAD.format(title="Devlog", description="Notes from making Swan Road: the rules, the computer opponent, the name, the details.", path="devlog/", extra=FEED)

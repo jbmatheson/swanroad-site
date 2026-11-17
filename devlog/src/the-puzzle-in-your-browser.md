@@ -13,7 +13,7 @@ The app sets one puzzle a day: a position, a side to move, and one to four moves
 
 In the app, a move that does not solve the puzzle is refused. The board jolts, a line of text says why, and nothing moves. That suits a player who already knows the game.
 
-Someone meeting the page may never have seen a pearl drift. So the page plays the wrong move: the anchor lands, the pearls slide, the page says it was not the one, and the board goes back. The hope is that a few wrong moves show the rules better than a paragraph can. The tries are counted, and the count goes into the result you can share.
+Someone meeting the page may never have seen a pearl drift. So the page plays the wrong move: the anchor lands, the pearls slide, the page says it was not the one, and the board goes back. The hope is that a few wrong moves show the rules better than a paragraph can. The paragraphs are in [Why the pearls drift](/devlog/why-the-pearls-drift/). The tries are counted, and the count goes into the result you can share.
 
 ## A fourth copy of the rules
 
