@@ -105,11 +105,11 @@
   @media (max-width: 760px) { .complete { grid-template-columns: 1fr; } }
   #ideas .lead { margin-bottom: 0; max-width: 780px; text-wrap: balance; }
 
-  footer { padding: 36px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; text-align: center; }
-  footer .wrap > div { line-height: 2; }
+  footer { border-top: 1px solid var(--line); padding: 36px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
+  footer > div { line-height: 2; }
   footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 20px; }
-  footer .wrap > div:last-child { margin-top: 12px; font-size: 14px; line-height: 1.6; opacity: .75; }
-  footer .wrap > div:last-child a { text-decoration: underline; white-space: normal; }
+  footer > div:last-child { margin-top: 12px; font-size: 14px; line-height: 1.6; opacity: .75; }
+  footer > div:last-child a { text-decoration: underline; white-space: normal; }
   footer a { color: var(--muted); text-decoration: none; white-space: nowrap; }
   footer a:hover { color: var(--ink); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -229,10 +229,8 @@
 </section>
 
 <footer>
-  <div class="wrap">
-    <div class="links"><a href="daily/">Daily puzzle</a><a href="devlog/">Devlog</a><a href="support/">Support</a><a href="privacy/">Privacy policy</a><a href="press/">Press</a><a href="mailto:jim@mouseandchisel.com">Contact us</a></div>
-    <div>© 2026 <a href="https://mouseandchisel.com" target="_blank" rel="noopener">Mouse &amp; Chisel Games</a>. Swan Road (<i lang="ang">swanrād</i>) is an Old English kenning for the sea, from <i>Beowulf</i>.</div>
-  </div>
+  <div class="links"><a href="/daily/">Daily puzzle</a><a href="/devlog/">Devlog</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="mailto:jim@mouseandchisel.com">Contact us</a></div>
+  <div>© 2026 <a href="https://mouseandchisel.com" target="_blank" rel="noopener">Mouse &amp; Chisel Games</a>. Swan Road (<i lang="ang">swanrād</i>) is an Old English kenning for the sea, from <i>Beowulf</i>.</div>
 </footer>
 <script>
 // The board at the top plays only while it is on screen, and not at all for a visitor who has asked for less motion.
