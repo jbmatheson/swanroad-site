@@ -106,7 +106,7 @@ DAILY_MAIN = """  <h1>Today’s Swan Road puzzle</h1>
   </div>
   <p id="fallback">Swan Road sets one puzzle a day, the same for everyone: force a pearl onto your shore in one to four moves, whatever the other side does. With scripts on, it plays right here.</p>
   @STORE@
-  <p class="muted small">Free to download, with no ads and no account. With the app installed, this link opens the puzzle there.</p>
+  <p class="muted small">Free to download, no ads, no account. If you have the app, this link opens the puzzle there.</p>
 
   <section>
     <h2>How the puzzle works</h2>
@@ -142,7 +142,7 @@ DAILY_STYLE = """  header.top { z-index: 10; }
   h3 { font-size: 17px; font-weight: 600; margin: 22px 0 4px; }
   section { text-align: left; }
   section h2 { text-align: center; }
-  .small { font-size: 15px; }
+  .small { font-size: 15px; text-wrap: balance; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .rules { margin: 0 0 14px; padding-left: 22px; }
   .rules li { margin: 0 0 10px; }
