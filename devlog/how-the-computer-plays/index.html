@@ -53,8 +53,13 @@
   .play { margin: 44px 0 0; padding: 18px 20px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
   .play p:last-child { margin: 0; }
   .btn { display: inline-block; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: #0b1a2b; font-weight: 600; text-decoration: none; }
-  footer { border-top: 1px solid var(--line); padding: 28px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
-  footer a { color: var(--muted); margin: 0 8px; }
+  footer { border-top: 1px solid var(--line); padding: 36px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
+  footer > div { line-height: 2; }
+  footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 20px; }
+  footer > div:last-child { margin-top: 12px; font-size: 14px; line-height: 1.6; opacity: .75; }
+  footer > div:last-child a { text-decoration: underline; white-space: normal; }
+  footer a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+  footer a:hover { color: var(--ink); }
 </style>
 </head>
 <body>
@@ -94,8 +99,8 @@
 <p class="muted"><a href="/devlog/">All posts</a></p>
 </main>
 <footer>
-  <div><a href="https://mouseandchisel.com" target="_blank" rel="noopener">Made by Mouse &amp; Chisel Games</a></div>
-  <div><a href="/daily/">Daily puzzle</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
+  <div class="links"><a href="/daily/">Daily puzzle</a><a href="/devlog/">Devlog</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="mailto:jim@mouseandchisel.com">Contact us</a></div>
+  <div>© 2026 <a href="https://mouseandchisel.com" target="_blank" rel="noopener">Mouse &amp; Chisel Games</a>. Swan Road (<i lang="ang">swanrād</i>) is an Old English kenning for the sea, from <i>Beowulf</i>.</div>
 </footer>
 </body>
 </html>

@@ -16,6 +16,7 @@ from anywhere:
 import html as htmllib, json, pathlib, re, shutil, sys
 
 import markdown
+import footer
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC, OUT = ROOT / "devlog" / "src", ROOT / "devlog"
@@ -76,19 +77,14 @@ HEAD = """<!doctype html>
   .play {{ margin: 44px 0 0; padding: 18px 20px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }}
   .play p:last-child {{ margin: 0; }}
   .btn {{ display: inline-block; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: #0b1a2b; font-weight: 600; text-decoration: none; }}
-  footer {{ border-top: 1px solid var(--line); padding: 28px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }}
-  footer a {{ color: var(--muted); margin: 0 8px; }}
+{footer_css}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a class="cta" href="/daily/">Daily puzzle</a><a href="/#how">How it plays</a><a href="/devlog/">Devlog</a><a href="/press/">Press</a><a href="/support/">Support</a></nav></div></header>
 <main>
 """
-FOOT = """</main>
-<footer>
-  <div><a href="https://mouseandchisel.com" target="_blank" rel="noopener">Made by Mouse &amp; Chisel Games</a></div>
-  <div><a href="/daily/">Daily puzzle</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
-</footer>
+FOOT = "</main>\n" + footer.HTML + """
 </body>
 </html>
 """
@@ -162,7 +158,7 @@ def main(drafts=False):
     for m, body in posts:
         html = markdown.markdown(body, extensions=["smarty"])
         rendered.append((m, html))
-        page = HEAD.format(title=m["title"], description=m["description"], path=f"devlog/{m['slug']}/", extra=FEED + article(m))
+        page = HEAD.format(title=m["title"], description=m["description"], path=f"devlog/{m['slug']}/", extra=FEED + article(m), footer_css=footer.CSS)
         page += f"<p class=\"muted\">{dated(m)}</p>\n<h1>{m['title']}</h1>\n{html}\n"
         page += PLAY.format(store=STORE)
         others = [o for o, _ in posts if o["slug"] != m["slug"]]
@@ -171,7 +167,7 @@ def main(drafts=False):
                 f"<li><a href=\"/devlog/{o['slug']}/\">{o['title']}</a>: {o['description']}</li>\n" for o in others) + "</ul>\n"
         page += "<p class=\"muted\"><a href=\"/devlog/\">All posts</a></p>\n" + FOOT
         (OUT / m["slug"]).mkdir(parents=True); (OUT / m["slug"] / "index.html").write_text(page, encoding="utf-8")
-    index = HEAD.format(title="Devlog", description="Notes from making Swan Road: the rules, the computer opponent, the name, the details.", path="devlog/", extra=FEED)
+    index = HEAD.format(title="Devlog", description="Notes from making Swan Road: the rules, the computer opponent, the name, the details.", path="devlog/", extra=FEED, footer_css=footer.CSS)
     index += "<h1>Devlog</h1>\n<p class=\"muted\">Notes from making the game, one a week from launch. <a href=\"/devlog/feed.xml\">Feed</a></p>\n"
     for m, _ in posts:
         index += (f"<div class=\"post\"><h2><a href=\"/devlog/{m['slug']}/\">{m['title']}</a></h2>"

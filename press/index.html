@@ -56,8 +56,13 @@
   figure img { border-radius: 12px; border: 1px solid var(--line); background: var(--card); }
   figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
   .note { font-size: 15px; color: var(--muted); }
-  footer { border-top: 1px solid var(--line); padding: 28px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
-  footer a { color: var(--muted); margin: 0 8px; }
+  footer { border-top: 1px solid var(--line); padding: 36px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }
+  footer > div { line-height: 2; }
+  footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 20px; }
+  footer > div:last-child { margin-top: 12px; font-size: 14px; line-height: 1.6; opacity: .75; }
+  footer > div:last-child a { text-decoration: underline; white-space: normal; }
+  footer a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+  footer a:hover { color: var(--ink); }
 </style>
 </head>
 <body>
@@ -175,8 +180,8 @@
   <blockquote><p>Swan Road is designed and developed by <a href="https://mouseandchisel.com" target="_blank" rel="noopener">Mouse &amp; Chisel Games</a>, an independent studio. It is free on the App Store for iPhone, iPad and iPhone Duo, with a one-time purchase for the complete game and no ads, subscription or account. More at <a href="https://swanroad.app">swanroad.app</a>.</p></blockquote>
 </main>
 <footer>
-  <div><a href="https://mouseandchisel.com" target="_blank" rel="noopener">Made by Mouse &amp; Chisel Games</a></div>
-  <div><a href="../daily/">Daily puzzle</a><a href="../support/">Support</a><a href="../privacy/">Privacy policy</a><a href="./">Press</a><a href="mailto:jim@mouseandchisel.com">Contact us</a></div>
+  <div class="links"><a href="/daily/">Daily puzzle</a><a href="/devlog/">Devlog</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="mailto:jim@mouseandchisel.com">Contact us</a></div>
+  <div>© 2026 <a href="https://mouseandchisel.com" target="_blank" rel="noopener">Mouse &amp; Chisel Games</a>. Swan Road (<i lang="ang">swanrād</i>) is an Old English kenning for the sea, from <i>Beowulf</i>.</div>
 </footer>
 </body>
 </html>

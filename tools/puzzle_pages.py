@@ -7,6 +7,7 @@ day's puzzle the way the app does, from the book this script writes into the pag
 run this again, then `python3 tools/check_daily.py <path to swanroad-sim>` to prove the page still plays every puzzle
 the way the simulator does, and `python3 tools/sitemap.py`. The numbered pages stay pictures: the archive is the app's."""
 import json, pathlib, sys
+import footer
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 N = 7
@@ -56,18 +57,14 @@ PAGE = """<!doctype html>
   .board {{ font-size: clamp(22px, 6vw, 34px); line-height: 1.15; letter-spacing: .02em; margin: 28px auto; white-space: pre; font-family: var(--sans); }}
   .btn {{ display: inline-flex; align-items: center; gap: 10px; margin: 18px 0 8px; padding: 14px 22px; border-radius: 14px; background: var(--accent); color: #0b1a2b; font-weight: 600; text-decoration: none; }}
   .btn svg {{ width: 22px; height: 22px; }}
-  footer {{ border-top: 1px solid var(--line); padding: 28px 16px 48px; color: var(--muted); font-size: 15px; text-align: center; }}
-  footer a {{ color: var(--muted); margin: 0 8px; }}
+{footer_css}
 {style}</style>
 {head}</head>
 <body>
 <header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32">Swan Road</a><nav><a class="cta" href="/daily/"{current}>Daily puzzle</a><a href="/#how">How it plays</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav></div></header>
 <main>
 {main}</main>
-<footer>
-  <div><a href="https://mouseandchisel.com" target="_blank" rel="noopener">Made by Mouse &amp; Chisel Games</a></div>
-  <div><a href="/daily/">Daily puzzle</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
-</footer>
+{footer}
 </body>
 </html>
 """
@@ -238,7 +235,7 @@ def write(path, link, **fields):
     fields.setdefault("head", "")
     fields.setdefault("current", "")
     fields.setdefault("image", "shot-puzzle.jpg")
-    out.write_text(PAGE.format(path=path + "/", link=link, app_id=APP_ID, **fields))
+    out.write_text(PAGE.format(path=path + "/", link=link, app_id=APP_ID, footer_css=footer.CSS, footer=footer.HTML, **fields))
 
 book = json.load(open(sys.argv[1]))
 puzzles = book["puzzles"]
