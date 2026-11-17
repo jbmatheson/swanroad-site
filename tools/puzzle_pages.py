@@ -65,7 +65,7 @@ PAGE = """<!doctype html>
 <main>
 {main}</main>
 <footer>
-  <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel Games</a></div>
+  <div><a href="https://mouseandchisel.com" target="_blank" rel="noopener">Made by Mouse &amp; Chisel Games</a></div>
   <div><a href="/daily/">Daily puzzle</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
 </footer>
 </body>

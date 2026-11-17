@@ -86,7 +86,7 @@ HEAD = """<!doctype html>
 """
 FOOT = """</main>
 <footer>
-  <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel Games</a></div>
+  <div><a href="https://mouseandchisel.com" target="_blank" rel="noopener">Made by Mouse &amp; Chisel Games</a></div>
   <div><a href="/daily/">Daily puzzle</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
 </footer>
 </body>
@@ -130,7 +130,7 @@ def article(m):
     data = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": m["title"], "description": m["description"],
             "datePublished": m["date"], "dateModified": m.get("updated") or m["date"],
             "url": f"{SITE}devlog/{m['slug']}/", "image": f"{SITE}assets/social.jpg",
-            "author": {"@type": "Person", "name": "Jim Matheson"},
+            "author": {"@type": "Organization", "name": "Mouse & Chisel Games", "url": "https://mouseandchisel.com"},
             "publisher": {"@type": "Organization", "name": "Mouse & Chisel Games", "url": "https://mouseandchisel.com"}}
     return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + "</script>\n"
 
@@ -142,7 +142,7 @@ def feed(posts):
     out = ['<?xml version="1.0" encoding="utf-8"?>', '<feed xmlns="http://www.w3.org/2005/Atom">',
            "  <title>Swan Road devlog</title>", "  <subtitle>Notes from making the game.</subtitle>",
            f'  <link href="{SITE}devlog/"/>', f'  <link rel="self" href="{SITE}devlog/feed.xml"/>',
-           f"  <id>{SITE}devlog/</id>", f"  <updated>{newest}T12:00:00Z</updated>", "  <author><name>Jim Matheson</name></author>"]
+           f"  <id>{SITE}devlog/</id>", f"  <updated>{newest}T12:00:00Z</updated>", "  <author><name>Mouse &amp; Chisel Games</name><uri>https://mouseandchisel.com</uri></author>"]
     for m, body in posts:
         url = f"{SITE}devlog/{m['slug']}/"
         out += ["  <entry>", f"    <title>{x(m['title'])}</title>", f'    <link href="{url}"/>', f"    <id>{url}</id>",
