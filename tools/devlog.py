@@ -32,6 +32,7 @@ HEAD = """<!doctype html>
 <meta property="og:url" content="https://swanroad.app/{path}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b1a2b">
+<meta name="apple-itunes-app" content="app-id=6821428315">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,7 +78,7 @@ HEAD = """<!doctype html>
 FOOT = """</main>
 <footer>
   <div><a href="https://mouseandchisel.com">Made by Mouse &amp; Chisel Games</a></div>
-  <div><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
+  <div><a href="/daily/">Daily puzzle</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="/press/">Press</a><a href="/devlog/">Devlog</a></div>
 </footer>
 </body>
 </html>
